@@ -1,0 +1,22 @@
+server:
+  port : 8080
+
+fint:
+  kafka:
+    application-id: provider
+    enable-ssl: false
+    default-replicas: 1
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: provider
+  webflux:
+    base-path: /provider
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
