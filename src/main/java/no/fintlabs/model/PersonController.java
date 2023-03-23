@@ -1,21 +1,22 @@
 package no.fintlabs.model;
 
 import lombok.RequiredArgsConstructor;
-import no.fintlabs.kafka.PersonProducer;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import no.fintlabs.kafka.PersonConsumer;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RequestMapping("person")
-@RestController()
+@RestController
 public class PersonController {
 
-    private final PersonProducer personProducer;
+    private final PersonConsumer personConsumer;
 
-    @PostMapping
-    public void post(@RequestBody Person person) {
-        personProducer.send(person);
+    @GetMapping
+    public List<Person> getPersons() {
+        return personConsumer.getSuperCache().getAllPerson();
     }
 }

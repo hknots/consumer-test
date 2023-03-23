@@ -3,7 +3,7 @@ server:
 
 fint:
   kafka:
-    application-id: provider
+    application-id: consumer
     enable-ssl: false
     default-replicas: 1
 
@@ -11,9 +11,9 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
-      group-id: provider
+      group-id: consumer
   webflux:
-    base-path: /provider
+    base-path: /consumer
 
 management:
   endpoints:
